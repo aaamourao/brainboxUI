@@ -1,4 +1,4 @@
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,7 +21,10 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <input type="file" multiple accept="image/*" onChange={onImageChange} />
+        <Form.Group controlId="imgInput" className="mb-3">
+          <Form.Label>Select dataset</Form.Label>
+          <Form.Control type="file" multiple accept="image/*" onChange={onImageChange} />
+        </Form.Group>
       </Container>
       <Container>
         {imageURLs.map(imgSrc => <img src={imgSrc} />)}
