@@ -1,5 +1,7 @@
 import { Container, ListGroup, Row, Col, Button } from "react-bootstrap";
 import React, { Component } from "react";
+import { BoundingBox } from 'react-bootstrap-icons';
+
 
 
 class ImageSideBar extends Component {
@@ -53,7 +55,7 @@ class ImageSideBar extends Component {
               <Button>-</Button>
             </Col>
             <Col>
-              <Button>box</Button>
+              <Button><BoundingBox /></Button>
             </Col>
             <Col>
               <Button>export</Button>

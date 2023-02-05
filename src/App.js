@@ -24,7 +24,7 @@ class App extends Component {
             <Col className="wf">
               <ImageSideBar onFileChange={this.handleFileChange} />
             </Col>
-            <Col className="wf"> 
+            <Col className="wf" xs={6}> 
               <Row>
                 <img src={this.state.selectedFile} />
               </Row>
