@@ -1,36 +1,42 @@
-import { Container, Form } from "react-bootstrap";
-import React, { useEffect, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import React, { Component } from "react";
+import ImageSideBar from './ImageSideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-function App() {
-  const [images, setImages] = useState([]);
-  const [imageURLs, setImageURLs] = useState([]);
+class App extends Component {
+  
+  state = {
+    selectedFile: null
+  };
 
-  useEffect(() => {
-    if (images.length < 1) return;
-    const newImageURLs = [];
-    images.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
-    setImageURLs(newImageURLs);
-  }, [images]);
+  handleFileChange = imageUrl => {
+    this.setState({ selectedFile: imageUrl });
+  };
 
-  function onImageChange(e) {
-    setImages([...e.target.files]);
+
+  render() {
+    return (
+      <div className="App">
+        <Container>
+          <Row></Row>
+          <Row>
+            <Col>
+              <ImageSideBar onFileChange={this.handleFileChange} />
+            </Col>
+            <Col> 
+              <Row>
+                <img src={this.state.selectedFile} />
+              </Row>
+              <Row></Row>
+            </Col>
+            <Col></Col>
+          </Row>
+          <Row></Row>
+        </Container>
+      </div>
+    );
   }
-
-  return (
-    <div className="App">
-      <Container>
-        <Form.Group controlId="imgInput" className="mb-3">
-          <Form.Label>Select dataset</Form.Label>
-          <Form.Control type="file" multiple accept="image/*" onChange={onImageChange} />
-        </Form.Group>
-      </Container>
-      <Container>
-        {imageURLs.map(imgSrc => <img src={imgSrc} />)}
-      </Container>
-    </div>
-  );
 }
 
 export default App;
