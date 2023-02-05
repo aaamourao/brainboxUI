@@ -1,4 +1,4 @@
-import { Container, Form, ListGroup } from "react-bootstrap";
+import { Container, ListGroup, Row, Button } from "react-bootstrap";
 import React, { Component } from "react";
 
 
@@ -8,15 +8,18 @@ class ImageSideBar extends Component {
     images: [],
     imageURLs: [],
     selected: null,
-  }
+  };
 
   onFileChange = null;
+  hiddenFileInput = null;
 
   constructor(props) {
     super(props);
     this.onFileChange = props.onFileChange;
+    this.hiddenFileInput = React.createRef();
     this.onImageChange = this.onImageChange.bind(this);
     this.onImageSelect = this.onImageSelect.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   onImageChange(event) {
@@ -33,23 +36,29 @@ class ImageSideBar extends Component {
     this.setState({selected: index});
   }
 
+  handleClick() {
+    this.hiddenFileInput.current.click();
+  }
+
   render() {
 
     return (
       <div className="App">
         <Container>
-          <Form.Group controlId="imgInput" className="mb-3">
-            <Form.Label>Select dataset</Form.Label>
-            <Form.Control type="file" multiple accept="image/*" onChange={this.onImageChange} />
-          </Form.Group>
-          <ListGroup>
-            {this.state.images.map((item, index) => (
-              <ListGroup.Item action onClick={() => this.onImageSelect(index)} variant={(this.state.selected === index) ? 'warning' : ''}
-              key={item.name}>
-                {item.name}
-              </ListGroup.Item>
-            ))}
-      </ListGroup>
+          <Row>
+          <Button onClick={this.handleClick}>+</Button>
+          <input type="file" multiple accept="image/*" ref={this.hiddenFileInput} onChange={this.onImageChange} style={{display: 'none'}} />
+          </Row>
+          <Row>
+            <ListGroup>
+              {this.state.images.map((item, index) => (
+                <ListGroup.Item action onClick={() => this.onImageSelect(index)} variant={(this.state.selected === index) ? 'warning' : ''}
+                key={item.name}>
+                  {item.name}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+          </Row>
         </Container>
       </div>
     );
