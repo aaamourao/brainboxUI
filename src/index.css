@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wf {
+  outline: 1px solid black;
+}
+
+.row {
+  min-height: 250px;;
+}

@@ -19,18 +19,18 @@ class App extends Component {
     return (
       <div className="App">
         <Container>
-          <Row></Row>
+          <Row><Col className="wf">BrainBox</Col></Row>
           <Row>
-            <Col>
+            <Col className="wf">
               <ImageSideBar onFileChange={this.handleFileChange} />
             </Col>
-            <Col> 
+            <Col className="wf"> 
               <Row>
                 <img src={this.state.selectedFile} />
               </Row>
               <Row></Row>
             </Col>
-            <Col></Col>
+            <Col className="wf"></Col>
           </Row>
           <Row></Row>
         </Container>
