@@ -1,4 +1,4 @@
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, ListGroup } from "react-bootstrap";
 import React, { Component } from "react";
 
 
@@ -7,6 +7,7 @@ class ImageSideBar extends Component {
   state = {
     images: [],
     imageURLs: [],
+    selected: null,
   }
 
   onFileChange = null;
@@ -19,12 +20,11 @@ class ImageSideBar extends Component {
 
   onImageChange(event) {
     const newImages = [...event.target.files];
-    this.setState({images: newImages})
     if (newImages.length < 1) return;
     const newImageURLs = [];
     newImages.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
-    this.setState({imageUrls: newImageURLs})
     this.onFileChange(newImageURLs[0]);
+    this.setState({images: newImages,imageURLs: newImageURLs, selected: 0});
   }
 
   render() {
@@ -36,6 +36,13 @@ class ImageSideBar extends Component {
             <Form.Label>Select dataset</Form.Label>
             <Form.Control type="file" multiple accept="image/*" onChange={this.onImageChange} />
           </Form.Group>
+          <ListGroup>
+            {this.state.images.map((item, index) => (
+              <ListGroup.Item key={item.name} variant={(this.state.selected === index) ? 'warning' : ''}>
+                {JSON.stringify(item.name)}
+              </ListGroup.Item>
+            ))}
+      </ListGroup>
         </Container>
       </div>
     );
