@@ -1,4 +1,4 @@
-import { Container, ListGroup, Row, Button } from "react-bootstrap";
+import { Container, ListGroup, Row, Col, Button } from "react-bootstrap";
 import React, { Component } from "react";
 
 
@@ -41,13 +41,23 @@ class ImageSideBar extends Component {
   }
 
   render() {
-
     return (
       <div className="App">
         <Container>
           <Row>
-          <Button onClick={this.handleClick}>+</Button>
-          <input type="file" multiple accept="image/*" ref={this.hiddenFileInput} onChange={this.onImageChange} style={{display: 'none'}} />
+            <Col>
+              <Button onClick={this.handleClick}>+</Button>
+              <input type="file" multiple accept="image/*" ref={this.hiddenFileInput} onChange={this.onImageChange} style={{display: 'none'}} />
+            </Col>
+            <Col>
+              <Button>-</Button>
+            </Col>
+            <Col>
+              <Button>box</Button>
+            </Col>
+            <Col>
+              <Button>export</Button>
+            </Col>
           </Row>
           <Row>
             <ListGroup>
