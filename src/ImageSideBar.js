@@ -16,6 +16,7 @@ class ImageSideBar extends Component {
     super(props);
     this.onFileChange = props.onFileChange;
     this.onImageChange = this.onImageChange.bind(this);
+    this.onImageSelect = this.onImageSelect.bind(this);
   }
 
   onImageChange(event) {
@@ -25,6 +26,11 @@ class ImageSideBar extends Component {
     newImages.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
     this.onFileChange(newImageURLs[0]);
     this.setState({images: newImages,imageURLs: newImageURLs, selected: 0});
+  }
+
+  onImageSelect(index) {
+    this.onFileChange(this.state.imageURLs[index]);
+    this.setState({selected: index});
   }
 
   render() {
@@ -38,8 +44,9 @@ class ImageSideBar extends Component {
           </Form.Group>
           <ListGroup>
             {this.state.images.map((item, index) => (
-              <ListGroup.Item key={item.name} variant={(this.state.selected === index) ? 'warning' : ''}>
-                {JSON.stringify(item.name)}
+              <ListGroup.Item action onClick={() => this.onImageSelect(index)} variant={(this.state.selected === index) ? 'warning' : ''}
+              key={item.name}>
+                {item.name}
               </ListGroup.Item>
             ))}
       </ListGroup>
