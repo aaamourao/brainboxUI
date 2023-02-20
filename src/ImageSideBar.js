@@ -30,7 +30,11 @@ class ImageSideBar extends Component {
     const newImageURLs = [];
     newImages.forEach(image => newImageURLs.push(URL.createObjectURL(image)));
     this.onFileChange(newImageURLs[0]);
-    this.setState({images: newImages,imageURLs: newImageURLs, selected: 0});
+    this.setState({
+      images: this.state.images.concat(newImages),
+      imageURLs: this.state.imageURLs.concat(newImageURLs),
+      selected: this.state.images.length
+    });
   }
 
   onImageSelect(index) {
@@ -58,7 +62,7 @@ class ImageSideBar extends Component {
               </ListGroup>
             <ListGroup>
               {this.state.images.length === 0 ? "Please, click on + and add images" : this.state.images.map((item, index) => (
-                <ListGroup.Item action onClick={() => this.onImageSelect(index)} variant={(this.state.selected === index) ? 'warning' : ''}
+                <ListGroup.Item action onClick={() => this.onImageSelect(index)} className={(this.state.selected === index) ? 'active' : ''}
                 key={item.name}>
                   {item.name}
                 </ListGroup.Item>
