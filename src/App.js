@@ -20,7 +20,7 @@ class App extends Component {
       <div className="App">
         <Container>
           <Row><Col className="wf">BrainBox</Col></Row>
-          <Row>
+          <Row className="mainArea">
             <Col className="wf">
               <ImageSideBar onFileChange={this.handleFileChange} />
             </Col>

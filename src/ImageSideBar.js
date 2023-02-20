@@ -1,4 +1,4 @@
-import { Container, ListGroup, Row, Col, Button } from "react-bootstrap";
+import { Container, ListGroup, Row } from "react-bootstrap";
 import React, { Component } from "react";
 import { BoundingBox } from 'react-bootstrap-icons';
 
@@ -47,23 +47,17 @@ class ImageSideBar extends Component {
       <div className="App">
         <Container>
           <Row>
-            <Col>
-              <Button onClick={this.handleClick}>+</Button>
-              <input type="file" multiple accept="image/*" ref={this.hiddenFileInput} onChange={this.onImageChange} style={{display: 'none'}} />
-            </Col>
-            <Col>
-              <Button>-</Button>
-            </Col>
-            <Col>
-              <Button><BoundingBox /></Button>
-            </Col>
-            <Col>
-              <Button>export</Button>
-            </Col>
-          </Row>
-          <Row>
+              <ListGroup horizontal>
+                <ListGroup.Item action onClick={this.handleClick}>
+                  +
+                  <input type="file" multiple accept="image/*" ref={this.hiddenFileInput} onChange={this.onImageChange} style={{display: 'none'}} />
+                </ListGroup.Item>
+                <ListGroup.Item action onClick={this.handleClick}>-</ListGroup.Item>
+                <ListGroup.Item action onClick={this.handleClick}><BoundingBox /></ListGroup.Item>
+                <ListGroup.Item action onClick={this.handleClick}>export</ListGroup.Item>
+              </ListGroup>
             <ListGroup>
-              {this.state.images.map((item, index) => (
+              {this.state.images.length === 0 ? "Please, click on + and add images" : this.state.images.map((item, index) => (
                 <ListGroup.Item action onClick={() => this.onImageSelect(index)} variant={(this.state.selected === index) ? 'warning' : ''}
                 key={item.name}>
                   {item.name}

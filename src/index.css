@@ -16,6 +16,11 @@ code {
   outline: 1px solid black;
 }
 
+/*
 .row {
   min-height: 250px;;
+}*/
+
+.mainArea {
+  min-height: 500px;
 }
