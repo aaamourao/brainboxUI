@@ -21,7 +21,8 @@ class ImageSideBar extends Component {
     this.hiddenFileInput = React.createRef();
     this.onImageChange = this.onImageChange.bind(this);
     this.onImageSelect = this.onImageSelect.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this);
   }
 
   onImageChange(event) {
@@ -33,7 +34,7 @@ class ImageSideBar extends Component {
     this.setState({
       images: this.state.images.concat(newImages),
       imageURLs: this.state.imageURLs.concat(newImageURLs),
-      selected: this.state.images.length
+      selected: this.state.images.length,
     });
   }
 
@@ -42,8 +43,23 @@ class ImageSideBar extends Component {
     this.setState({selected: index});
   }
 
-  handleClick() {
+  handleAddClick() {
     this.hiddenFileInput.current.click();
+  }
+
+  handleRemoveClick() {
+    let newImages = [...this.state.images];
+    let newImageURLs = [...this.state.imageURLs];
+    let newSelected = this.state.selected;
+    newImages.splice(newSelected, 1);
+    newImageURLs.splice(newSelected, 1);
+    newSelected = (newSelected > 0) ? newSelected - 1 : 0;
+    this.setState({
+      images: newImages,
+      imageURLs: newImageURLs,
+      selected: newSelected,
+    });
+    this.onFileChange(newImageURLs[newSelected]);
   }
 
   render() {
@@ -52,13 +68,13 @@ class ImageSideBar extends Component {
         <Container>
           <Row>
               <ListGroup horizontal>
-                <ListGroup.Item action onClick={this.handleClick}>
+                <ListGroup.Item action onClick={this.handleAddClick}>
                   +
                   <input type="file" multiple accept="image/*" ref={this.hiddenFileInput} onChange={this.onImageChange} style={{display: 'none'}} />
                 </ListGroup.Item>
-                <ListGroup.Item action onClick={this.handleClick}>-</ListGroup.Item>
-                <ListGroup.Item action onClick={this.handleClick}><BoundingBox /></ListGroup.Item>
-                <ListGroup.Item action onClick={this.handleClick}>export</ListGroup.Item>
+                <ListGroup.Item action onClick={this.handleRemoveClick}>-</ListGroup.Item>
+                <ListGroup.Item action onClick={this.handleAddClick}><BoundingBox /></ListGroup.Item>
+                <ListGroup.Item action onClick={this.handleAddClick}>export</ListGroup.Item>
               </ListGroup>
             <ListGroup>
               {this.state.images.length === 0 ? "Please, click on + and add images" : this.state.images.map((item, index) => (
