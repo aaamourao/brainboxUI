@@ -48,7 +48,7 @@ class ImageSideBar extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="imageSideBar">
         <Container>
           <Row>
               <ListGroup horizontal>

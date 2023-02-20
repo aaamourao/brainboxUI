@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App bg-dark text-white height-full">
         <Container>
           <Row><Col className="wf">BrainBox</Col></Row>
           <Row className="mainArea">

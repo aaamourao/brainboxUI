@@ -13,14 +13,17 @@ code {
 }
 
 .wf {
-  outline: 1px solid black;
+  outline: 1px solid whitesmoke;
 }
-
-/*
-.row {
-  min-height: 250px;;
-}*/
 
 .mainArea {
   min-height: 500px;
+}
+
+.imageSideBar {
+  margin: 10px;
+}
+
+.height-full {
+  height: 100vh;
 }
