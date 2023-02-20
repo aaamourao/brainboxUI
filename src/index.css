@@ -27,3 +27,7 @@ code {
 .height-full {
   height: 100vh;
 }
+
+.button-list {
+  margin-bottom: 10px;
+}

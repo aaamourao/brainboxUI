@@ -2,6 +2,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import React, { Component } from "react";
 import ImageSideBar from './ImageSideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './projectVariables.scss';
 
 
 class App extends Component {
@@ -19,14 +20,14 @@ class App extends Component {
     return (
       <div className="App bg-dark text-white height-full">
         <Container>
-          <Row><Col className="wf">BrainBox</Col></Row>
-          <Row className="mainArea">
+          <Row><Col className="wf flex-row">BrainBox</Col></Row>
+          <Row className="mainArea height-full">
             <Col className="wf">
               <ImageSideBar onFileChange={this.handleFileChange} />
             </Col>
             <Col className="wf" xs={6}> 
               <Row>
-                <img src={this.state.selectedFile} />
+                <img className="img-responsive" src={this.state.selectedFile} />
               </Row>
               <Row></Row>
             </Col>

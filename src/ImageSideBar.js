@@ -67,15 +67,17 @@ class ImageSideBar extends Component {
       <div className="imageSideBar">
         <Container>
           <Row>
-              <ListGroup horizontal>
-                <ListGroup.Item action onClick={this.handleAddClick}>
+            <div className="button-list">
+              <ListGroup className="buttons-list" horizontal>
+                <ListGroup.Item className="text-center" action onClick={this.handleAddClick}>
                   +
                   <input type="file" multiple accept="image/*" ref={this.hiddenFileInput} onChange={this.onImageChange} style={{display: 'none'}} />
                 </ListGroup.Item>
-                <ListGroup.Item action onClick={this.handleRemoveClick}>-</ListGroup.Item>
-                <ListGroup.Item action onClick={this.handleAddClick}><BoundingBox /></ListGroup.Item>
-                <ListGroup.Item action onClick={this.handleAddClick}>export</ListGroup.Item>
+                <ListGroup.Item className="text-center" action onClick={this.handleRemoveClick}>-</ListGroup.Item>
+                <ListGroup.Item className="text-center" action onClick={this.handleAddClick}><BoundingBox /></ListGroup.Item>
+                <ListGroup.Item className="text-center" action onClick={this.handleAddClick}>export</ListGroup.Item>
               </ListGroup>
+            </div>
             <ListGroup>
               {this.state.images.length === 0 ? "Please, click on + and add images" : this.state.images.map((item, index) => (
                 <ListGroup.Item action onClick={() => this.onImageSelect(index)} className={(this.state.selected === index) ? 'active' : ''}
