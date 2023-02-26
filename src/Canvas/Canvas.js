@@ -28,8 +28,6 @@ class Canvas extends Component {
             backgroundPosition: 'center',
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
-            width: "100%",
-            height: "100%",
           }}
         />
       </Container>
