@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import ImageSideBar from './ImageSideBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './projectVariables.scss';
+import Canvas from "./Canvas/Canvas";
 
 
 class App extends Component {
@@ -15,6 +16,9 @@ class App extends Component {
     this.setState({ selectedFile: imageUrl });
   };
 
+  getSelectedFile = () => {
+    return (this.state.selectedFile);
+  };
 
   render() {
     return (
@@ -27,7 +31,7 @@ class App extends Component {
             </Col>
             <Col className="wf" xs={6}> 
               <Row>
-                <img className="img-responsive" src={this.state.selectedFile} />
+                <Canvas getCurrentImageUrl={this.getSelectedFile.bind(this)}/>
               </Row>
               <Row></Row>
             </Col>
